@@ -94,6 +94,7 @@ public VentanaDepart(JFrame f )
 	borra.addActionListener(this);
 	modif.addActionListener(this);
 	ver.addActionListener(this);
+	
 }
 
 public void actionPerformed(ActionEvent e) 
@@ -245,7 +246,12 @@ private int altadepart(String p) {
 			 }
 }
 
-public  void verporconsola() throws IOException {     
+public  void verporconsola() throws IOException {    
+  //codigo nuevo actividad 4.9 
+	claseAnidada ej = new claseAnidada();
+    ej.entrada();
+    System.out.println("Llamo a Salida: " + ej.salida(10));
+    //------------------------------------------
   String  nom="",loc=""; int dep=0; long pos;
   File fichero = new File("AleatorioDep.dat");
   RandomAccessFile file = new RandomAccessFile(fichero, "r");
@@ -410,4 +416,10 @@ void grabar(int dep, String nom, String loc)
 			e1.printStackTrace();
 		}	
 } // fin grabar
+
+
+
+
+
+
 }//fin clase
