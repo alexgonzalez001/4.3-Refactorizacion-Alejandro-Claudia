@@ -11,7 +11,7 @@ import java.io.RandomAccessFile;
 
 import javax.swing.*;
 
-public class VentanaDepart extends JFrame implements ActionListener  {
+public class VentanaDepart extends JFrame implements ActionListener, InterfaceVentanaDepart  {
 	
 private static final String NOEXISTEDEPART = "DEPARTAMENTO NO EXISTE.";
 private static final long serialVersionUID = 1L;
@@ -134,7 +134,8 @@ public void actionPerformed(ActionEvent e)
 	}
 }
 
-private int modifdepart(String p) {
+@Override
+public int modifdepart(String p) {
 	int dep;
 	int confirm;
 	mensaje.setText(" has pulsado el boton Modificar.");   
@@ -165,7 +166,8 @@ private int modifdepart(String p) {
 	return 0;
 }
 
-private int borrardepart(String p) {
+@Override
+public int borrardepart(String p) {
 	int dep;
 	int confirm;
 	mensaje.setText(" has pulsado el boton Borrar");   
@@ -198,7 +200,8 @@ private int borrardepart(String p) {
 	return 0;
 }
 
-private int consuldepart(String p) {
+@Override
+public int consuldepart(String p) {
 	int dep;
 	mensaje.setText(" has pulsado el boton alta");   
 	try {
@@ -220,7 +223,8 @@ private int consuldepart(String p) {
 	return 0;
 }
 
-private int altadepart(String p) {
+@Override
+public int altadepart(String p) {
 	int dep;
 	mensaje.setText(" has pulsado el boton alta");   
 	try {
@@ -416,8 +420,6 @@ void grabar(int dep, String nom, String loc)
 			e1.printStackTrace();
 		}	
 } // fin grabar
-
-
 
 
 
