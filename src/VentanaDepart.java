@@ -95,112 +95,24 @@ public VentanaDepart(JFrame f )
 	modif.addActionListener(this);
 	ver.addActionListener(this);
 }
-
+int dep, confirm;
 public void actionPerformed(ActionEvent e) 
-{   int dep, confirm;
-	
+{   
 	if (e.getSource() == balta) { //SE PULSA EL BOTON alta   	
-		mensaje.setText(" has pulsado el boton alta");   
-		try {
-	    	  dep=Integer.parseInt(num.getText());
-	    	  if (dep >0)
-	    	      if (consultar(dep))
-					 mensaje.setText(existeDepart);   
-			      else
-					{ mensaje.setText("NUEVO DEPARTAMENTO.");	
-	    	          grabar(dep, nombre.getText(), loc.getText());
-	    	          mensaje.setText("NUEVO DEPARTAMENTO GRABADO.");	
-	    	         }
-	    	  else mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");	
-	    	  
-	       } catch(java.lang.NumberFormatException ex) //controlar el error del Integer.parseInt
-	         {
-			 mensaje.setText(depar_error);} 
-	       catch (IOException ex2) {
-	    	   mensaje.setText("ERRORRR EN EL FICHERO. Fichero no existe. (ALTA)");
-	    	   // lo creo
-	    		
-	    		
-	    		 } 
-	    }
+		altadepart();
+	}
 		   
 	if (e.getSource() == consu) { //SE PULSA EL BOTON  consultar  	
-		mensaje.setText(" has pulsado el boton alta");   
-		try {
-	    	  dep=Integer.parseInt(num.getText());
-	    	  if (dep >0)
-	    	      if (consultar(dep))
-	    	       { mensaje.setText(existeDepart);   
-	    	         visualiza(dep);}
-			      else
-					{ mensaje.setText(NOEXISTEDEPART);	
-					  nombre.setText(" "); loc.setText(" ");
-	    	         }
-	    	  else mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");	
-	    	  
-	       } catch(java.lang.NumberFormatException ex) //controlar el error del Integer.parseInt
-	           {mensaje.setText("DEPARTAMENTO ERR�NEO");}
-	         catch (IOException ex2) 
-    	      {mensaje.setText(" ERRORRR EN EL FICHERO. Fichero no existe. (ALTA)");} 
-	      
-	    }
+		consultardepart();
+	}
 		  
 	if (e.getSource() == borra) { //SE PULSA EL BOTON  borrar  	
-		mensaje.setText(" has pulsado el boton Borrar");   
-		try {
-	    	  dep=Integer.parseInt(num.getText());
-	    	  if (dep >0)
-	    	      if (consultar(dep))
-	    	       { mensaje.setText(existeDepart);   
-	    	         visualiza(dep);
-	    	         confirm=JOptionPane.showConfirmDialog(this, "ESTAS SEGURO DE BORRAR...", "AVISO BORRADO.", 
-	    	        		     JOptionPane.OK_CANCEL_OPTION);	  
-	    	           // si devuelve 0 es OK
-	    	           //mensaje.setText(" has pulsado el boton Borrar "+ confirm);   
-	    	         if (confirm==0)  
-	    	          { borrar(dep);
-	    	            mensaje.setText(" REGISTRO BORRADOO: " + dep);	
-					    nombre.setText(" "); loc.setText(" ");
-	    	           }
-	    	       } 
-			      else
-					{ mensaje.setText(NOEXISTEDEPART);	
-					  nombre.setText(" "); loc.setText(" ");
-	    	         }
-	    	  else mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");	
-	    	  
-	       } catch(java.lang.NumberFormatException ex) //controlar el error del Integer.parseInt
-	           {mensaje.setText("DEPARTAMENTO ERR�NEO");} 
-	       catch (IOException ex2) 
-	    	   {mensaje.setText("ERRORRR EN EL FICHERO. Fichero no existe. (BORRAR)");} 
-	    }
+		borrardepart();
+	}
+		
 	if (e.getSource() == modif) { //SE PULSA EL BOTON  modificar  	
-		mensaje.setText(" has pulsado el boton Modificar.");   
-		try {
-	    	  dep=Integer.parseInt(num.getText());
-	    	  if (dep >0)
-	    	      if (consultar(dep))
-	    	       { mensaje.setText(existeDepart);  
-	    	         confirm=JOptionPane.showConfirmDialog(this, "ESTAS SEGURO DE MODIFICAR...", "AVISO MODIFICACI�N.", 
-	    	        		     JOptionPane.OK_CANCEL_OPTION);	  
-	    	           // si devuelve 0 es OK
-	    	           //mensaje.setText(" has pulsado el boton Borrar "+ confirm);   
-	    	        if (confirm==0)  
-	    	          { modificar(dep);
-	    	            mensaje.setText(" REGISTRO MODIFICADO: " + dep);	
-		 	           }
-	    	       } 
-			      else
-					{ mensaje.setText(NOEXISTEDEPART);	
-					  nombre.setText(" "); loc.setText(" ");
-	    	         }
-	    	  else mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");	
-	    	  
-	       } catch(java.lang.NumberFormatException ex) //controlar el error del Integer.parseInt
-	           {mensaje.setText("DEPARTAMENTO ERR�NEO");} 
-	       catch (IOException ex2) 
-	    	   {mensaje.setText(" ERRORRR EN EL FICHERO. Fichero no existe. (MODIFICAR)");} 
-	    }
+		modificardepart();
+	}
 	if (e.getSource() == fin) { //SE PULSA EL BOTON salir 	
 		 System.exit(0);	
 		 //dispose();   	
@@ -220,7 +132,104 @@ public void actionPerformed(ActionEvent e)
         loc.setText(" ");
 	}
 }
-
+void altadepart() {
+	mensaje.setText(" has pulsado el boton alta");   
+	try {
+    	  dep=Integer.parseInt(num.getText());
+    	  if (dep >0)
+    	      if (consultar(dep))
+				 mensaje.setText(existeDepart);   
+		      else
+				{ mensaje.setText("NUEVO DEPARTAMENTO.");	
+    	          grabar(dep, nombre.getText(), loc.getText());
+    	          mensaje.setText("NUEVO DEPARTAMENTO GRABADO.");	
+    	         }
+    	  else mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");	
+    	  
+       } catch(java.lang.NumberFormatException ex) //controlar el error del Integer.parseInt
+         {
+		 mensaje.setText(depar_error);} 
+       catch (IOException ex2) {
+    	   mensaje.setText("ERRORRR EN EL FICHERO. Fichero no existe. (ALTA)");
+    	   // lo creo
+    		 } 
+}
+void consultardepart() {
+	mensaje.setText(" has pulsado el boton alta");   
+	try {
+    	  dep=Integer.parseInt(num.getText());
+    	  if (dep >0)
+    	      if (consultar(dep))
+    	       { mensaje.setText(existeDepart);   
+    	         visualiza(dep);}
+		      else
+				{ mensaje.setText(NOEXISTEDEPART);	
+				  nombre.setText(" "); loc.setText(" ");
+    	         }
+    	  else mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");	
+    	  
+       } catch(java.lang.NumberFormatException ex) //controlar el error del Integer.parseInt
+           {mensaje.setText("DEPARTAMENTO ERR�NEO");}
+         catch (IOException ex2) 
+	      {mensaje.setText(" ERRORRR EN EL FICHERO. Fichero no existe. (ALTA)");} 
+      
+}
+void borrardepart() {
+	mensaje.setText(" has pulsado el boton Borrar");   
+	try {
+    	  dep=Integer.parseInt(num.getText());
+    	  if (dep >0)
+    	      if (consultar(dep))
+    	       { mensaje.setText(existeDepart);   
+    	         visualiza(dep);
+    	         confirm=JOptionPane.showConfirmDialog(this, "ESTAS SEGURO DE BORRAR...", "AVISO BORRADO.", 
+    	        		     JOptionPane.OK_CANCEL_OPTION);	  
+    	           // si devuelve 0 es OK
+    	           //mensaje.setText(" has pulsado el boton Borrar "+ confirm);   
+    	         if (confirm==0)  
+    	          { borrar(dep);
+    	            mensaje.setText(" REGISTRO BORRADOO: " + dep);	
+				    nombre.setText(" "); loc.setText(" ");
+    	           }
+    	       } 
+		      else
+				{ mensaje.setText(NOEXISTEDEPART);	
+				  nombre.setText(" "); loc.setText(" ");
+    	         }
+    	  else mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");	
+    	  
+       } catch(java.lang.NumberFormatException ex) //controlar el error del Integer.parseInt
+           {mensaje.setText("DEPARTAMENTO ERR�NEO");} 
+       catch (IOException ex2) 
+    	   {mensaje.setText("ERRORRR EN EL FICHERO. Fichero no existe. (BORRAR)");} 
+}	
+void modificardepart() {
+	mensaje.setText(" has pulsado el boton Modificar.");   
+	try {
+    	  dep=Integer.parseInt(num.getText());
+    	  if (dep >0)
+    	      if (consultar(dep))
+    	       { mensaje.setText(existeDepart);  
+    	         confirm=JOptionPane.showConfirmDialog(this, "ESTAS SEGURO DE MODIFICAR...", "AVISO MODIFICACI�N.", 
+    	        		     JOptionPane.OK_CANCEL_OPTION);	  
+    	           // si devuelve 0 es OK
+    	           //mensaje.setText(" has pulsado el boton Borrar "+ confirm);   
+    	        if (confirm==0)  
+    	          { modificar(dep);
+    	            mensaje.setText(" REGISTRO MODIFICADO: " + dep);	
+	 	           }
+    	       } 
+		      else
+				{ mensaje.setText(NOEXISTEDEPART);	
+				  nombre.setText(" "); loc.setText(" ");
+    	         }
+    	  else mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");	
+    	  
+       } catch(java.lang.NumberFormatException ex) //controlar el error del Integer.parseInt
+           {mensaje.setText("DEPARTAMENTO ERR�NEO");} 
+       catch (IOException ex2) 
+    	   {mensaje.setText(" ERRORRR EN EL FICHERO. Fichero no existe. (MODIFICAR)");} 
+}
 public  void verporconsola() throws IOException {     
   String  nom="",loc=""; int dep=0; long pos;
   File fichero = new File("AleatorioDep.dat");
