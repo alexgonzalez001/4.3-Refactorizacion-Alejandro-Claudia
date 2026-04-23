@@ -99,19 +99,19 @@ public VentanaDepart(JFrame f )
 public void actionPerformed(ActionEvent e) 
 {   existedepart = "DEPARTAMENTO EXISTE.";
 	if (e.getSource() == balta) { //SE PULSA EL BOTON alta   	
-		altadepart(); 
+		int resultado = altadepart("PRUEBA"); 
 	    }
 		   
 	if (e.getSource() == consu) { //SE PULSA EL BOTON  consultar  	
-		consuldepart(); 
+		int resultado = consuldepart("PRUEBA"); 
 	      
 	    }
 		  
 	if (e.getSource() == borra) { //SE PULSA EL BOTON  borrar  	
-		borrardepart(); 
+		int resultado = borrardepart("PRUEBA"); 
 	    }
 	if (e.getSource() == modif) { //SE PULSA EL BOTON  modificar  	
-		modifdepart(); 
+		int resultado = modifdepart("PRUEBA"); 
 	    }
 	if (e.getSource() == fin) { //SE PULSA EL BOTON salir 	
 		 System.exit(0);	
@@ -133,7 +133,7 @@ public void actionPerformed(ActionEvent e)
 	}
 }
 
-private void modifdepart() {
+private int modifdepart(String p) {
 	int dep;
 	int confirm;
 	mensaje.setText(" has pulsado el boton Modificar.");   
@@ -161,9 +161,10 @@ private void modifdepart() {
 	       {mensaje.setText("DEPARTAMENTO ERR�NEO");} 
 	   catch (IOException ex2) 
 		   {mensaje.setText(" ERRORRR EN EL FICHERO. Fichero no existe. (MODIFICAR)");}
+	return 0;
 }
 
-private void borrardepart() {
+private int borrardepart(String p) {
 	int dep;
 	int confirm;
 	mensaje.setText(" has pulsado el boton Borrar");   
@@ -193,9 +194,10 @@ private void borrardepart() {
 	       {mensaje.setText("DEPARTAMENTO ERR�NEO");} 
 	   catch (IOException ex2) 
 		   {mensaje.setText("ERRORRR EN EL FICHERO. Fichero no existe. (BORRAR)");}
+	return 0;
 }
 
-private void consuldepart() {
+private int consuldepart(String p) {
 	int dep;
 	mensaje.setText(" has pulsado el boton alta");   
 	try {
@@ -214,9 +216,10 @@ private void consuldepart() {
 	       {mensaje.setText("DEPARTAMENTO ERR�NEO");}
 	     catch (IOException ex2) 
 	      {mensaje.setText(" ERRORRR EN EL FICHERO. Fichero no existe. (ALTA)");}
+	return 0;
 }
 
-private void altadepart() {
+private int altadepart(String p) {
 	int dep;
 	mensaje.setText(" has pulsado el boton alta");   
 	try {
