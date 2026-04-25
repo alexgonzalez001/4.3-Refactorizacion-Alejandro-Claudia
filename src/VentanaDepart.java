@@ -11,7 +11,7 @@ import java.io.RandomAccessFile;
 
 import javax.swing.*;
 
-public class VentanaDepart extends JFrame implements ActionListener  {
+public class VentanaDepart extends JFrame implements ActionListener, InterfaceVentanaDepart  {
 	
 private static final String NOEXISTEDEPART = "DEPARTAMENTO NO EXISTE.";
 private static final long serialVersionUID = 1L;
@@ -132,7 +132,8 @@ public void actionPerformed(ActionEvent e)
         loc.setText(" ");
 	}
 }
-int altadepart(String nombre) {
+@Override
+public int altadepart(String nombre) {
 	mensaje.setText(" has pulsado el boton alta");   
 	try {
     	  dep=Integer.parseInt(num.getText());
@@ -155,7 +156,8 @@ int altadepart(String nombre) {
     		 } 
 	return 0;
 }
-int consultardepart(String nombre) {
+@Override
+public int consultardepart(String nombre) {
 	mensaje.setText(" has pulsado el boton alta");   
 	try {
     	  dep=Integer.parseInt(num.getText());
@@ -175,7 +177,8 @@ int consultardepart(String nombre) {
 	      {mensaje.setText(" ERRORRR EN EL FICHERO. Fichero no existe. (ALTA)");} 
 	return 0;
 }
-int borrardepart(String nombre) {
+@Override
+public int borrardepart(String nombre) {
 	mensaje.setText(" has pulsado el boton Borrar");   
 	try {
     	  dep=Integer.parseInt(num.getText());
@@ -205,7 +208,8 @@ int borrardepart(String nombre) {
     	   {mensaje.setText("ERRORRR EN EL FICHERO. Fichero no existe. (BORRAR)");} 
 	return 0;
 }	
-int modificardepart(String nombre) {
+@Override
+public int modificardepart(String nombre) {
 	mensaje.setText(" has pulsado el boton Modificar.");   
 	try {
     	  dep=Integer.parseInt(num.getText());
