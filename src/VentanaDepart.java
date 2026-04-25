@@ -99,7 +99,7 @@ int dep, confirm;
 public void actionPerformed(ActionEvent e) 
 {   
 	if (e.getSource() == balta) { //SE PULSA EL BOTON alta   	
-		altadepart();
+		altadepart("PRUEBA");
 	}
 		   
 	if (e.getSource() == consu) { //SE PULSA EL BOTON  consultar  	
@@ -132,7 +132,7 @@ public void actionPerformed(ActionEvent e)
         loc.setText(" ");
 	}
 }
-void altadepart() {
+int altadepart(String nombre) {
 	mensaje.setText(" has pulsado el boton alta");   
 	try {
     	  dep=Integer.parseInt(num.getText());
