@@ -103,15 +103,15 @@ public void actionPerformed(ActionEvent e)
 	}
 		   
 	if (e.getSource() == consu) { //SE PULSA EL BOTON  consultar  	
-		consultardepart();
+		consultardepart("PRUEBA");
 	}
 		  
 	if (e.getSource() == borra) { //SE PULSA EL BOTON  borrar  	
-		borrardepart();
+		borrardepart("PRUEBA");
 	}
 		
 	if (e.getSource() == modif) { //SE PULSA EL BOTON  modificar  	
-		modificardepart();
+		modificardepart("PRUEBA");
 	}
 	if (e.getSource() == fin) { //SE PULSA EL BOTON salir 	
 		 System.exit(0);	
@@ -141,7 +141,7 @@ int altadepart(String nombre) {
 				 mensaje.setText(existeDepart);   
 		      else
 				{ mensaje.setText("NUEVO DEPARTAMENTO.");	
-    	          grabar(dep, nombre.getText(), loc.getText());
+				grabar(dep, nombre, loc.getText());
     	          mensaje.setText("NUEVO DEPARTAMENTO GRABADO.");	
     	         }
     	  else mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");	
@@ -153,8 +153,9 @@ int altadepart(String nombre) {
     	   mensaje.setText("ERRORRR EN EL FICHERO. Fichero no existe. (ALTA)");
     	   // lo creo
     		 } 
+	return 0;
 }
-void consultardepart() {
+int consultardepart(String nombre) {
 	mensaje.setText(" has pulsado el boton alta");   
 	try {
     	  dep=Integer.parseInt(num.getText());
@@ -164,7 +165,7 @@ void consultardepart() {
     	         visualiza(dep);}
 		      else
 				{ mensaje.setText(NOEXISTEDEPART);	
-				  nombre.setText(" "); loc.setText(" ");
+				  loc.setText(" ");
     	         }
     	  else mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");	
     	  
@@ -172,9 +173,9 @@ void consultardepart() {
            {mensaje.setText("DEPARTAMENTO ERR�NEO");}
          catch (IOException ex2) 
 	      {mensaje.setText(" ERRORRR EN EL FICHERO. Fichero no existe. (ALTA)");} 
-      
+	return 0;
 }
-void borrardepart() {
+int borrardepart(String nombre) {
 	mensaje.setText(" has pulsado el boton Borrar");   
 	try {
     	  dep=Integer.parseInt(num.getText());
@@ -189,12 +190,12 @@ void borrardepart() {
     	         if (confirm==0)  
     	          { borrar(dep);
     	            mensaje.setText(" REGISTRO BORRADOO: " + dep);	
-				    nombre.setText(" "); loc.setText(" ");
+				   loc.setText(" ");
     	           }
     	       } 
 		      else
 				{ mensaje.setText(NOEXISTEDEPART);	
-				  nombre.setText(" "); loc.setText(" ");
+				 loc.setText(" ");
     	         }
     	  else mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");	
     	  
@@ -202,8 +203,9 @@ void borrardepart() {
            {mensaje.setText("DEPARTAMENTO ERR�NEO");} 
        catch (IOException ex2) 
     	   {mensaje.setText("ERRORRR EN EL FICHERO. Fichero no existe. (BORRAR)");} 
+	return 0;
 }	
-void modificardepart() {
+int modificardepart(String nombre) {
 	mensaje.setText(" has pulsado el boton Modificar.");   
 	try {
     	  dep=Integer.parseInt(num.getText());
@@ -221,7 +223,7 @@ void modificardepart() {
     	       } 
 		      else
 				{ mensaje.setText(NOEXISTEDEPART);	
-				  nombre.setText(" "); loc.setText(" ");
+				 loc.setText(" ");
     	         }
     	  else mensaje.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");	
     	  
@@ -229,8 +231,12 @@ void modificardepart() {
            {mensaje.setText("DEPARTAMENTO ERR�NEO");} 
        catch (IOException ex2) 
     	   {mensaje.setText(" ERRORRR EN EL FICHERO. Fichero no existe. (MODIFICAR)");} 
+	return 0;
 }
-public  void verporconsola() throws IOException {     
+public  void verporconsola() throws IOException { 
+  ClaseAnidada ej = new ClaseAnidada();
+  ej.entrada();
+  System.out.println("Llamo a Salida: " + ej.salida(10));
   String  nom="",loc=""; int dep=0; long pos;
   File fichero = new File("AleatorioDep.dat");
   RandomAccessFile file = new RandomAccessFile(fichero, "r");
